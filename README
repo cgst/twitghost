@@ -1,0 +1,9 @@
+Painless tweet scheduling directly from your Chrome browser
+
+With twitghost you can schedule tweets for later without having to specify the
+exact delivery time. You put all your tweets in a queue and twitghost delivers
+them at a sensible pace so as to not flood your followers.
+
+You schedule tweets with a handy Chrome browser extension. URLs are shortened
+with bitly.
+

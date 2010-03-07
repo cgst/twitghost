@@ -1,0 +1,14 @@
+{
+  "name": "TwitGhost",
+  "version": "0.1",
+  "description": "Schedule tweets from your browser with automatic timing",
+  "options_page": "options.html",
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_title": "TwitGhost this URL",
+    "popup": "popup.html"
+  },
+  "permissions": [
+    "http://*/", "tabs"
+  ]
+}

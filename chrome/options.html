@@ -1,0 +1,19 @@
+<head>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="popup.css" />
+  <script type="text/javascript">
+
+var kServerEndPoint = 'server_endpoint';
+var kTwitGhostAuth = 'auth';
+
+function config(key) {
+  localStorage[kServerEndPoint] = prompt('Server URL',
+      'http://twitghost.example.com');
+  localStorage[kTwitGhostAuth] = prompt('TwitGhost Auth');
+}
+
+  </script>
+</head>
+<body>
+  <input type="button" value="Configure" onclick="config()" />
+</body>

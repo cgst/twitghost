@@ -1,0 +1,42 @@
+body {
+  width:357px;
+  overflow-x:hidden;
+  font-family: Arial;
+  font-size: 10pt;
+}
+#tweet {
+  display: block;
+  width: 100%;
+  height: 5em;
+  font-family: Arial;
+}
+#status {
+  font-size: 12pt;
+  background-color: green;
+  color: white;
+  text-align: center;
+  font-size: 14pt;
+  font-weight: bold;
+}
+#status.error {
+  background-color: red;
+}
+#schedule {
+  font-weight: bold;
+}
+#len {
+  float: right;
+  color: green;
+  font-weight: bold;
+  font-size: 14pt;
+}
+form.too-big #len {
+  color: red;
+}
+form.too-big #tweet {
+  background-color: #faa;
+}
+a#config {
+  float: right;
+  font-size: 8pt;
+}

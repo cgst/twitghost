@@ -1,0 +1,88 @@
+<head>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="popup.css" />
+  <script type="text/javascript">
+
+var kServerEndPoint = 'server_endpoint';
+var kBitlyLogin = 'bitly-username';
+var kBitlyKey = 'bitly-key';
+var kTwitGhostAuth = 'auth';
+
+function shortenUrl(url, callback) {
+  var params = {
+    version: "2.0.1",
+    login: kBitlyLogin,
+    apiKey: kBitlyKey
+  };
+  var bitlyCb = function(data) {
+    callback(data.results[url].shortUrl);
+  }
+  $.getJSON("http://api.bit.ly/shorten", { version: params.version,
+      longUrl: url, login: params.login, apiKey: params.apiKey }, bitlyCb);
+}
+
+function updateLength() {
+  var len = $('#tweet').val().length;
+  $('#len').html(len);
+  if (len > 140 || len < 1) {
+    $('form.tweet').addClass('too-big');
+    $('#schedule').attr('disabled', 'disabled');
+  } else {
+    $('form.tweet').removeClass('too-big');
+    $('#schedule').attr('disabled', '');
+  }
+}
+
+function scheduleTweet() {
+  var tweet = $('#tweet').val();
+  $.ajax({
+    url: localStorage[kServerEndPoint] + '/schedule',
+    type: 'POST',
+    dataType: 'text',
+    data: { tweet: tweet, auth: localStorage[kTwitGhostAuth] },
+    complete: function(xhr, textStatus) {
+      if (textStatus != 'success') {
+        $('#status').text(textStatus);
+        $('#status').addClass('error');
+      } else {
+        $('form.tweet').hide();
+        $('#status').text(xhr.responseText);
+        setTimeout(function() { window.close(); }, 500);
+      }
+    }
+});
+}
+
+function init(url, title) {
+  if (!localStorage[kServerEndPoint]) {
+    alert("Please configure first.");
+    window.close();
+  }
+  // init tweet box
+  $('#tweet').keyup(updateLength);
+  $('#tweet').change(updateLength);
+  $('#tweet').blur(updateLength);
+  $('#tweet').focus(updateLength);
+  // other elements
+  $('#schedule').click(scheduleTweet);
+  // shorten URL & suggest tweet
+  shortenUrl(url, function(shortUrl) {
+    $('#tweet').text(title + " " + shortUrl);
+    $('#tweet').focus();
+  });
+}
+
+chrome.tabs.getSelected(null, function(tab) {
+  init(tab.url, tab.title);
+});
+
+  </script>
+</head>
+<body>
+  <div id="status"></div>
+  <form class="tweet">
+    <textarea id="tweet">tweet goes here</textarea>
+    <span id="len">-</span>
+    <input type="submit" value="Schedule" id="schedule" />
+  </form>
+</body>

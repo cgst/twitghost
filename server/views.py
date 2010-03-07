@@ -16,8 +16,7 @@ def schedule(request):
   if request.POST.get('auth') != settings.TWITGHOST_AUTH_KEY:
     logging.error("Unauthorized access")
     return HttpResponse('forbidden', status=403)
-  new_tweet = Tweet(tweet=request.POST['tweet'],
-      username=settings.TWITTER_USERNAME)
+  new_tweet = Tweet(tweet=request.POST['tweet'])
   new_tweet.save()
   return HttpResponse('ok', mimetype="text/xml")
 

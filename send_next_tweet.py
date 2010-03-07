@@ -3,7 +3,7 @@ import logging
 from os import path, environ
 import sys
 
-import twitter
+import tweepy
 
 environ['DJANGO_SETTINGS_MODULE'] = 'twitghost.settings'
 module_path = path.abspath(path.join(path.dirname(__file__), '..'))
@@ -19,10 +19,17 @@ def main(arv):
     return
   else:
     logging.debug("Will send tweet: \"%s\"" % tweet.tweet.encode('utf-8'))
-  api = twitter.Api(username=settings.TWITTER_USERNAME,
-      password=settings.TWITTER_PASSWORD)
+
+  # Authentication
+  auth = tweepy.OAuthHandler(settings.TWITTER_CONSUMER_KEY,
+      settings.TWITTER_CONSUMER_SECRET)
+  auth.set_access_token(settings.TWITTER_TOKEN_KEY,
+      settings.TWITTER_TOKEN_SECRET)
+  api = tweepy.API(auth)
+
+  # Update status
   try:
-    status = api.PostUpdate(tweet.tweet)
+    api.update_status(tweet.tweet)
     tweet.processed = True
     tweet.save()
     logging.debug("Tweet sent")

@@ -3,7 +3,6 @@ from datetime import datetime
 
 
 class Tweet(models.Model):
-  username = models.CharField(max_length=128)
   tweet = models.CharField(max_length=140)
   created_on = models.DateTimeField(default=datetime.now)
   processed = models.BooleanField(default=False)

@@ -1,13 +1,16 @@
-# twitter auth
-TWITTER_USERNAME = 'twitter-username'
-TWITTER_PASSWORD = 'twitter-password'
+# twitter auth (Run ./twitter_auth.py first)
+TWITTER_TOKEN_KEY = 'FIXME'
+TWITTER_TOKEN_SECRET = 'FIXME'
 
-# twitghost auth for clients (i.e. the browser extension)
-TWITGHOST_AUTH_KEY = 'secret-key'
+# TwitGhost auth for clients (i.e. the browser extension)
+TWITGHOST_AUTH_KEY = 'FIXME'
 
-# absolute path to the directory that holds media
-MEDIA_ROOT = '/home/wickedman/d/twitghost/static/'
+# twitter client settings (http://twitter.com/apps/)
+TWITTER_CONSUMER_KEY = 'FIXME'
+TWITTER_CONSUMER_SECRET = 'FIXME'
 
+# absolute path to ./static
+MEDIA_ROOT = 'FIXME'
 
 
 # -----------------------------------------------

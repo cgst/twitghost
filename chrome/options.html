@@ -4,12 +4,16 @@
   <script type="text/javascript">
 
 var kServerEndPoint = 'server_endpoint';
+var kBitlyLogin = 'bitly_username';
+var kBitlyKey = 'bitly_key';
 var kTwitGhostAuth = 'auth';
 
 function config(key) {
   localStorage[kServerEndPoint] = prompt('Server URL',
       'http://twitghost.example.com');
   localStorage[kTwitGhostAuth] = prompt('TwitGhost Auth');
+  localStorage[kBitlyLogin] = prompt('Bitly username');
+  localStorage[kBitlyKey] = prompt('Bitly api key');
 }
 
   </script>

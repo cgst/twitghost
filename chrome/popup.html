@@ -4,15 +4,15 @@
   <script type="text/javascript">
 
 var kServerEndPoint = 'server_endpoint';
-var kBitlyLogin = 'bitly-username';
-var kBitlyKey = 'bitly-key';
+var kBitlyLogin = 'bitly_username';
+var kBitlyKey = 'bitly_key';
 var kTwitGhostAuth = 'auth';
 
 function shortenUrl(url, callback) {
   var params = {
     version: "2.0.1",
-    login: kBitlyLogin,
-    apiKey: kBitlyKey
+    login: localStorage[kBitlyLogin],
+    apiKey: localStorage[kBitlyKey]
   };
   var bitlyCb = function(data) {
     callback(data.results[url].shortUrl);

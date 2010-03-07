@@ -6,14 +6,14 @@
 <h2>Scheduled</h2>
 <ul>
   {% for tweet in scheduled.all %}
-  <li>{{ tweet.username }}: {{ tweet.tweet }}</li>
+  <li>{{ tweet.tweet }}</li>
   {% endfor %}
 </ul>
 
 <h2>Processed</h2>
 <ul>
   {% for tweet in processed.all %}
-  <li>{{ tweet.username }}: {{ tweet.tweet }}</li>
+  <li>{{ tweet.tweet }}</li>
   {% endfor %}
 </ul>
 </html>
